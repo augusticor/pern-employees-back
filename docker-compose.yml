@@ -1,0 +1,22 @@
+services:
+  database:
+    container_name: postgresdb
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    image: postgres
+    volumes:
+      - type: bind
+        source: ./database_scripts
+        target: /docker-entrypoint-initdb.d
+        read_only: true
+
+  backend:
+    container_name: nodeback
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: ./src
+        target: /usr/src/app/src
