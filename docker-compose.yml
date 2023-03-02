@@ -12,8 +12,12 @@ services:
         read_only: true
 
   backend:
-    container_name: nodeback
     build: .
+    container_name: nodeback
+    depends_on:
+      - database
+    links:
+      - "database:postgresdatabase"
     ports:
       - "3000:3000"
     volumes:

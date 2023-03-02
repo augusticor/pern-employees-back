@@ -2,6 +2,6 @@ const { Router } = require('express');
 const router = Router();
 const { registerEmployee } = require('../controllers/auth');
 
-router.get('/register', registerEmployee);
+router.post('/register', registerEmployee);
 
 module.exports = router;
