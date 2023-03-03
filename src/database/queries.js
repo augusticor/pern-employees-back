@@ -34,4 +34,20 @@ const insertEmployee = async ({
   }
 };
 
-module.exports = { insertEmployee };
+const getEmployeeByEmail = async (email) => {
+  try {
+    const query = 'SELECT * FROM EMPLOYEES WHERE email = $1';
+    const { rows } = await db.query(query, [email]);
+    if (rows.length === 0) return null;
+
+    return { ...rows[0] };
+    //
+  } catch (error) {
+    const { code } = error;
+    if (errorCodes[code]) throw errorCodes[code];
+
+    throw new Error('DB Error searching employee', { cause: error });
+  }
+};
+
+module.exports = { insertEmployee, getEmployeeByEmail };
