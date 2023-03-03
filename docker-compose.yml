@@ -10,6 +10,9 @@ services:
         source: ./database_scripts
         target: /docker-entrypoint-initdb.d
         read_only: true
+      - type: volume
+        source: postgresdbdata
+        target: /var/lib/postgresql/data
 
   backend:
     build: .
@@ -24,3 +27,6 @@ services:
       - type: bind
         source: ./src
         target: /usr/src/app/src
+
+volumes:
+  postgresdbdata:
