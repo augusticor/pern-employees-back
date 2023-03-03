@@ -1,5 +1,5 @@
 const db = require('./config');
-const { errorCodes } = require('../errors/errorCodes');
+const { errorCodes } = require('../validations/errors/errorCodes');
 
 const insertEmployee = async ({
   firstName,
