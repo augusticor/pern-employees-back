@@ -68,7 +68,7 @@ const loginEmployee = async (req = request, res = response) => {
     //
   } catch (error) {
     if (error instanceof CustomDataBaseError || error instanceof CustomDataError) {
-      logger.warn(`Creating employee: ${error.message}`);
+      logger.warn(`Login employee: ${error.message}`);
       return res.status(400).json({ ok: false, msg: error.message });
     }
 
