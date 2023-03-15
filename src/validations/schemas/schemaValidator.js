@@ -17,8 +17,8 @@ const loginValidator = (loginData) => {
   if (error) throw new CustomDataError(error.message);
 };
 
-const getEmployeesValidator = (data = {}) => {
-  const { error, value } = getEmployeesSchema.validate(data);
+const getEmployeesValidator = (employeeId) => {
+  const { error, value } = getEmployeesSchema.validate(employeeId);
   if (error) throw new CustomDataError(error.message);
   return value;
 };

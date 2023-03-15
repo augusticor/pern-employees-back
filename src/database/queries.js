@@ -57,4 +57,16 @@ const getAllEmployees = async (employeeId) => {
   return rows;
 };
 
-module.exports = { insertEmployee, getEmployeeByEmail, getAllEmployees };
+const getEmployeesByManager = async (managerId = 1) => {
+  const query =
+    'SELECT id, first_name as "firstName", last_name as "lastName", email, manager_id as "managerId", role FROM EMPLOYEES WHERE manager_id = $1';
+  const { rows } = await db.query(query, [managerId]);
+  return rows;
+};
+
+module.exports = {
+  insertEmployee,
+  getEmployeeByEmail,
+  getAllEmployees,
+  getEmployeesByManager,
+};
