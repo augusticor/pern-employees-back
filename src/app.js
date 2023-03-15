@@ -10,4 +10,6 @@ server.use(express.json());
 // Routes
 server.use('/api/auth', require('./routes/auth'));
 
+server.use('/api/employees', require('./routes/employees'));
+
 module.exports = server;

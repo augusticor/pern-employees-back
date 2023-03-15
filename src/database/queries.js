@@ -50,4 +50,11 @@ const getEmployeeByEmail = async (email) => {
   }
 };
 
-module.exports = { insertEmployee, getEmployeeByEmail };
+const getAllEmployees = async (employeeId) => {
+  const query =
+    'SELECT id, first_name as "firstName", last_name as "lastName", email, manager_id as "managerId", role FROM EMPLOYEES WHERE ID <> $1';
+  const { rows } = await db.query(query, [employeeId]);
+  return rows;
+};
+
+module.exports = { insertEmployee, getEmployeeByEmail, getAllEmployees };

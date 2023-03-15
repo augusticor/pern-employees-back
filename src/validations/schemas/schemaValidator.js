@@ -1,4 +1,5 @@
 const CustomDataError = require('../errors/CustomDataError');
+const getEmployeesSchema = require('./employees/get');
 const loginSchema = require('./loginSchema');
 const registerSchema = require('./registerSchema');
 
@@ -16,4 +17,10 @@ const loginValidator = (loginData) => {
   if (error) throw new CustomDataError(error.message);
 };
 
-module.exports = { registerValidator, loginValidator };
+const getEmployeesValidator = (data = {}) => {
+  const { error, value } = getEmployeesSchema.validate(data);
+  if (error) throw new CustomDataError(error.message);
+  return value;
+};
+
+module.exports = { registerValidator, loginValidator, getEmployeesValidator };
